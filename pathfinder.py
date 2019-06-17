@@ -29,7 +29,7 @@ class MapData:
 
     def get_grayscale_value(self, coord_x_y):
         max and min values, takes an x,y tuple returns an int for the
-         gray of the point requested"""
+        """ gray of the point requested"""
         gray_value = (self.max_value - self.min_value) / 256
         return int((self.data_file[coord_x_y[1]][coord_x_y[0]]-self.min_value) / gray_value)
 
