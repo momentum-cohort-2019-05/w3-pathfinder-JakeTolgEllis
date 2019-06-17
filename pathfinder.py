@@ -9,7 +9,6 @@ def read_file(file):
     source_two_d_list = []
 
     for line in source_str:
-        # I don't know why I'm getting empty lists, but I can clean them out
         if line.split() != []:
             source_two_d_list.append([int(_) for _ in line.split()])
 
@@ -18,22 +17,17 @@ def read_file(file):
 class MapData:
     """class to hold topographical data for a map"""
     def __init__(self, data_file):
-        """expects data_file as a 2d list of int elevations
-        min and max value required to set color gradients"""
         self.data_file = data_file
         self.max_value = self.get_max()
         self.min_value = self.get_min()
 
     def get_width(self):
-        """return the number of columns"""
         return len(self.data_file[0])
 
     def get_length(self):
-        """return the number of rows"""
         return len(self.data_file)
 
     def get_grayscale_value(self, coord_x_y):
-        """distrubtes 256 shades of gray over the range of data using
         max and min values, takes an x,y tuple returns an int for the
          gray of the point requested"""
         gray_value = (self.max_value - self.min_value) / 256
@@ -131,9 +125,6 @@ class Pathfinder:
             self.map_image.putpixel(self.curr_pos, color)
 
     def get_greedy_move(self, up_right, right, down_right):
-        """recieves three tuples of (x,y) data (potentially None) and
-        selects the best move by the greedy algorithm, returning a (column,row)
-        tuple"""
         curr_elevation = self.map_data.get_value(self.curr_pos)
         new_moves = {}
         new_elevation = self.map_data.get_value(up_right)
@@ -175,7 +166,7 @@ class Pathfinder:
             self.map_image.putpixel(coord, color)
         return None
 
-# open the file and build the map objecs
+#andys method  open the file and build the map objecs
 file = "elevation_small.txt"
 map_data = MapData(read_file(file))
 map_image = MapImage(map_data)
